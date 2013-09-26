@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<!-- This file is part of account_payment_bank module for Tryton.
+The COPYRIGHT file at the top level of this repository contains the full
+copyright notices and license terms. -->
+<tryton>
+    <data>
+        <!-- account.payment.journal -->
+        <record model="ir.ui.view" id="payment_journal_view_form">
+            <field name="model">account.payment.journal</field>
+            <field name="type">form</field>
+            <field name="priority" eval="20"/>
+            <field name="inherit" ref="account_payment.payment_journal_view_form"/>
+            <field name="name">payment_journal_form</field>
+        </record>
+
+        <record model="ir.ui.view" id="payment_journal_view_list">
+            <field name="model">account.payment.journal</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="20"/>
+            <field name="inherit" ref="account_payment.payment_journal_view_list"/>
+            <field name="name">payment_journal_list</field>
+        </record>
+
+        <!-- account.payment.group -->
+        <record model="ir.ui.view" id="payment_group_view_form">
+            <field name="model">account.payment.group</field>
+            <field name="type">form</field>
+            <field name="priority" eval="20"/>
+            <field name="inherit" ref="account_payment.payment_group_view_form"/>
+            <field name="name">payment_group_form</field>
+        </record>
+        <record model="ir.ui.view" id="payment_group_view_list">
+            <field name="model">account.payment.group</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="20"/>
+            <field name="inherit" ref="account_payment.payment_group_view_list"/>
+            <field name="name">payment_group_list</field>
+        </record>
+
+    <!-- account.payment -->
+        <record model="ir.ui.view" id="payment_view_form">
+            <field name="model">account.payment</field>
+            <field name="type">form</field>
+            <field name="inherit" ref="account_payment.payment_view_form"/>
+            <field name="name">payment_form</field>
+        </record>
+        <record model="ir.ui.view" id="payment_view_list">
+            <field name="model">account.payment</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="20"/>
+            <field name="inherit" ref="account_payment.payment_view_list"/>
+            <field name="name">payment_list</field>
+        </record>
+    </data>
+</tryton>

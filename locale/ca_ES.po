@@ -1,0 +1,44 @@
+# 
+msgid ""
+msgstr "Content-Type: text/plain; charset=utf-8\n"
+
+msgctxt "field:account.payment,bank_account:"
+msgid "Bank Account"
+msgstr "Banc"
+
+msgctxt "field:account.payment.group,amount:"
+msgid "Total"
+msgstr "Total"
+
+msgctxt "field:account.payment.group,currency_digits:"
+msgid "Currency Digits"
+msgstr "Decimals de la moneda"
+
+msgctxt "field:account.payment.group,payment_type:"
+msgid "Payment Type"
+msgstr "Tipus de pagament"
+
+msgctxt "field:account.payment.journal,bank_account:"
+msgid "Bank Account"
+msgstr "Banc"
+
+msgctxt "field:account.payment.journal,party:"
+msgid "Party"
+msgstr "Tercer"
+
+msgctxt "field:account.payment.journal,payment_type:"
+msgid "Payment Type"
+msgstr "Tipus de pagament"
+
+msgctxt "help:account.payment.journal,bank_account:"
+msgid "It is the bank account of the company or the party."
+msgstr "És el compte bancari de l'empresa."
+
+msgctxt "help:account.payment.journal,party:"
+msgid ""
+"The party who sends the payment order, if it is different from the company."
+msgstr "El tercer que envia l'ordre de pagament, si és diferent de l'empresa."
+
+msgctxt "view:account.payment.journal:"
+msgid "Sender data"
+msgstr "Dades de l'emissor"
