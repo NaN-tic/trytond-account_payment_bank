@@ -20,6 +20,7 @@ class Journal:
             [('owners', '=', Eval('company'))],
             [('owners', '=', Eval('party'))],
             ],
+        depends=['party', 'company'],
         help='It is the bank account of the company or the party.')
     payment_type = fields.Many2One('account.payment.type', 'Payment Type',
         required=True)
