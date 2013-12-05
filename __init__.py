@@ -4,9 +4,13 @@
 from trytond.pool import Pool
 from .payment import *
 
+
 def register():
     Pool.register(
         Journal,
         Group,
         Payment,
         module='account_payment_bank', type_='model')
+    Pool.register(
+        PayLine,
+        module='account_payment_bank', type_='wizard')
