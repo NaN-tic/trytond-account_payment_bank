@@ -88,10 +88,9 @@ class Payment:
         res['bank_account'] = None
         party = self.party
         if self.kind and party:
-            Party = Pool().get('party.party')
-            default_bank_account = getattr(Party,
-                'get_' + self.kind + '_bank_account')
-            res['bank_account'] = default_bank_account(party).id
+            default_bank_account = getattr(party, self.kind + '_bank_account')
+            res['bank_account'] = (default_bank_account and
+                default_bank_account.id or None)
         return res
 
     def on_change_party(self):
@@ -99,10 +98,9 @@ class Payment:
         res['bank_account'] = None
         party = self.party
         if party and self.kind:
-            Party = Pool().get('party.party')
-            default_bank_account = getattr(Party,
-                'get_' + self.kind + '_bank_account')
-            res['bank_account'] = default_bank_account(party).id
+            default_bank_account = getattr(party, self.kind + '_bank_account')
+            res['bank_account'] = (default_bank_account and
+                default_bank_account.id or None)
         return res
 
     def on_change_line(self):
@@ -112,10 +110,9 @@ class Payment:
         if self.line and self.line.bank_account:
             res['bank_account'] = self.line.bank_account.id
         elif party and self.kind:
-            Party = Pool().get('party.party')
-            default_bank_account = getattr(Party,
-                'get_' + self.kind + '_bank_account')
-            res['bank_account'] = default_bank_account(party).id
+            default_bank_account = getattr(party, self.kind + '_bank_account')
+            res['bank_account'] = (default_bank_account and
+                default_bank_account.id or None)
         return res
 
 
