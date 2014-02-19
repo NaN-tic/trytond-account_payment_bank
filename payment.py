@@ -25,7 +25,7 @@ class Journal:
     payment_type = fields.Many2One('account.payment.type', 'Payment Type',
         required=True)
     party = fields.Many2One('party.party', 'Party',
-        help=('The party who sends the payment order, if it is different from '
+        help=('The party who sends the payment group, if it is different from '
         'the company.'))
 
 

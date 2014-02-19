@@ -4,7 +4,7 @@ msgstr "Content-Type: text/plain; charset=utf-8\n"
 
 msgctxt "field:account.payment,bank_account:"
 msgid "Bank Account"
-msgstr "Banc"
+msgstr "Compte bancari"
 
 msgctxt "field:account.payment.group,amount:"
 msgid "Total"
@@ -20,7 +20,7 @@ msgstr "Tipus de pagament"
 
 msgctxt "field:account.payment.journal,bank_account:"
 msgid "Bank Account"
-msgstr "Banc"
+msgstr "Compte bancari"
 
 msgctxt "field:account.payment.journal,party:"
 msgid "Party"
@@ -36,8 +36,9 @@ msgstr "És el compte bancari de l'empresa."
 
 msgctxt "help:account.payment.journal,party:"
 msgid ""
-"The party who sends the payment order, if it is different from the company."
-msgstr "El tercer que envia l'ordre de pagament, si és diferent de l'empresa."
+"The party who sends the payment group, if it is different from the company."
+msgstr ""
+"El tercer que envia el grup de pagaments, si és diferent de l'empresa."
 
 msgctxt "view:account.payment.journal:"
 msgid "Sender data"

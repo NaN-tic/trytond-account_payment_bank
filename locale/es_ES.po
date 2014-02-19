@@ -20,7 +20,7 @@ msgstr "Tipo de pago"
 
 msgctxt "field:account.payment.journal,bank_account:"
 msgid "Bank Account"
-msgstr "Banco"
+msgstr "Cuenta bancaria"
 
 msgctxt "field:account.payment.journal,party:"
 msgid "Party"
@@ -32,12 +32,12 @@ msgstr "Tipo de pago"
 
 msgctxt "help:account.payment.journal,bank_account:"
 msgid "It is the bank account of the company or the party."
-msgstr "És el compte bancari de l'empresa."
+msgstr "Es la cuenta bancaria de la empresa."
 
 msgctxt "help:account.payment.journal,party:"
 msgid ""
-"The party who sends the payment order, if it is different from the company."
-msgstr "El tercero que emite la orden de pago si es diferente de la empresa."
+"The party who sends the payment group, if it is different from the company."
+msgstr "El tercero que emite el grupo de pagos si es diferente de la empresa."
 
 msgctxt "view:account.payment.journal:"
 msgid "Sender data"
