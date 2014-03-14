@@ -40,6 +40,24 @@ msgid ""
 msgstr ""
 "El tercer que envia el grup de pagaments, si és diferent de l'empresa."
 
+msgctxt ""
+"model:ir.action.act_window.domain,name:act_move_line_form_domain_payable_with_reverse"
+msgid "Payable with reverse moves"
+msgstr "A pagar amb moviments inversos"
+
+msgctxt ""
+"model:ir.action.act_window.domain,name:act_move_line_form_domain_receivable_with_reverse"
+msgid "Receivable with reverse moves"
+msgstr "A cobrar amb moviments inversos"
+
 msgctxt "view:account.payment.journal:"
 msgid "Sender data"
 msgstr "Dades de l'emissor"
+
+msgctxt "wizard_button:account.move.line.pay,start,end:"
+msgid "Cancel"
+msgstr "Cancel·lat"
+
+msgctxt "wizard_button:account.move.line.pay,start,pay:"
+msgid "Pay"
+msgstr "Paga"
