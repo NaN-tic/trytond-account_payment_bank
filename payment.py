@@ -33,18 +33,20 @@ class Group:
     __name__ = 'account.payment.group'
 
     payment_type = fields.Function(fields.Many2One('account.payment.type',
-            'Payment Type', on_change_with=['journal']),
+            'Payment Type'),
         'on_change_with_payment_type')
-    currency_digits = fields.Function(fields.Integer('Currency Digits',
-            on_change_with=['journal']), 'on_change_with_currency_digits')
+    currency_digits = fields.Function(fields.Integer('Currency Digits'),
+        'on_change_with_currency_digits')
     amount = fields.Function(fields.Numeric('Total', digits=(16,
                 Eval('currency_digits', 2)), depends=['currency_digits']),
         'get_amount')
 
+    @fields.depends('journal')
     def on_change_with_payment_type(self, name=None):
         if self.journal and self.journal.payment_type:
             return self.journal.payment_type.id
 
+    @fields.depends('journal')
     def on_change_with_currency_digits(self, name=None):
         if self.journal and self.journal.currency:
             return self.journal.currency.digits
@@ -75,13 +77,13 @@ class Payment:
     def __setup__(cls):
         super(Payment, cls).__setup__()
         if 'party' not in cls.kind.on_change:
-            cls.kind.on_change.append('party')
+            cls.kind.on_change.add('party')
         if 'kind' not in cls.party.on_change:
-            cls.party.on_change.append('kind')
+            cls.party.on_change.add('kind')
         if 'kind' not in cls.line.on_change:
-            cls.line.on_change.append('kind')
+            cls.line.on_change.add('kind')
         if 'party' not in cls.line.on_change:
-            cls.line.on_change.append('party')
+            cls.line.on_change.add('party')
 
     def on_change_kind(self):
         res = super(Payment, self).on_change_kind()
