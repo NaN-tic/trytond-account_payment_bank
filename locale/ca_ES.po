@@ -32,23 +32,22 @@ msgstr "Tipus de pagament"
 
 msgctxt "help:account.payment.journal,bank_account:"
 msgid "It is the bank account of the company or the party."
-msgstr "És el compte bancari de l'empresa."
+msgstr "És el compte bancari de l'empresa o del tercer."
 
 msgctxt "help:account.payment.journal,party:"
 msgid ""
 "The party who sends the payment group, if it is different from the company."
-msgstr ""
-"El tercer que envia el grup de pagaments, si és diferent de l'empresa."
+msgstr "El tercer que envia el grup de pagaments si és diferent de l'empresa."
 
 msgctxt ""
 "model:ir.action.act_window.domain,name:act_move_line_form_domain_payable_with_reverse"
 msgid "Payable with reverse moves"
-msgstr "A pagar amb moviments inversos"
+msgstr "A pagar amb apunts inversos"
 
 msgctxt ""
 "model:ir.action.act_window.domain,name:act_move_line_form_domain_receivable_with_reverse"
 msgid "Receivable with reverse moves"
-msgstr "A cobrar amb moviments inversos"
+msgstr "A cobrar amb apunts inversos"
 
 msgctxt "view:account.payment.journal:"
 msgid "Sender data"
@@ -56,8 +55,8 @@ msgstr "Dades de l'emissor"
 
 msgctxt "wizard_button:account.move.line.pay,start,end:"
 msgid "Cancel"
-msgstr "Cancel·lat"
+msgstr "Cancel·la"
 
 msgctxt "wizard_button:account.move.line.pay,start,pay:"
 msgid "Pay"
-msgstr "Paga"
+msgstr "Crea pagament"
