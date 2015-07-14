@@ -49,6 +49,14 @@ msgctxt ""
 msgid "Receivable with reverse moves"
 msgstr "A cobrar con apuntes inversos"
 
+msgctxt "view:account.move.line:"
+msgid "Total Credit"
+msgstr "Total haber"
+
+msgctxt "view:account.move.line:"
+msgid "Total Debit"
+msgstr "Total debe"
+
 msgctxt "view:account.payment.journal:"
 msgid "Sender data"
 msgstr "Datos del emisor"
