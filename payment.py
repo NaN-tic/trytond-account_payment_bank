@@ -3,7 +3,7 @@
 # the full copyright notices and license terms.
 from decimal import Decimal
 from trytond.model import fields
-from trytond.pool import Pool, PoolMeta
+from trytond.pool import PoolMeta
 from trytond.pyson import Eval
 
 __all__ = ['Journal', 'Group', 'Payment', 'PayLine']
@@ -85,37 +85,37 @@ class Payment:
         if 'party' not in cls.line.on_change:
             cls.line.on_change.add('party')
 
+    @fields.depends('party', 'kind')
     def on_change_kind(self):
-        res = super(Payment, self).on_change_kind()
-        res['bank_account'] = None
+        super(Payment, self).on_change_kind()
+        self.bank_account = None
         party = self.party
         if self.kind and party:
             default_bank_account = getattr(party, self.kind + '_bank_account')
-            res['bank_account'] = (default_bank_account and
+            self.bank_account = (default_bank_account and
                 default_bank_account.id or None)
-        return res
 
+    @fields.depends('party', 'kind')
     def on_change_party(self):
-        res = super(Payment, self).on_change_party()
-        res['bank_account'] = None
+        super(Payment, self).on_change_party()
+        self.bank_account = None
         party = self.party
         if party and self.kind:
             default_bank_account = getattr(party, self.kind + '_bank_account')
-            res['bank_account'] = (default_bank_account and
+            self.bank_account = (default_bank_account and
                 default_bank_account.id or None)
-        return res
 
+    @fields.depends('party', 'line')
     def on_change_line(self):
-        res = super(Payment, self).on_change_line()
-        res['bank_account'] = None
+        super(Payment, self).on_change_line()
+        self.bank_account = None
         party = self.party
         if self.line and self.line.bank_account:
-            res['bank_account'] = self.line.bank_account.id
+            self.bank_account = self.line.bank_account.id
         elif party and self.kind:
             default_bank_account = getattr(party, self.kind + '_bank_account')
-            res['bank_account'] = (default_bank_account and
+            self.bank_account = (default_bank_account and
                 default_bank_account.id or None)
-        return res
 
 
 class PayLine:
