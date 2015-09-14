@@ -53,7 +53,6 @@ msgctxt "view:account.move.line:"
 msgid "Total Credit"
 msgstr "Total haver"
 
-#, fuzzy
 msgctxt "view:account.move.line:"
 msgid "Total Debit"
 msgstr "Total deure"
