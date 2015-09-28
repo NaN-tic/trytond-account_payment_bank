@@ -3,7 +3,7 @@
 # the full copyright notices and license terms.
 from decimal import Decimal
 from trytond.model import fields
-from trytond.pool import Pool, PoolMeta
+from trytond.pool import PoolMeta
 from trytond.pyson import Eval
 
 __all__ = ['Journal', 'Group', 'Payment', 'PayLine']
@@ -15,13 +15,6 @@ _ZERO = Decimal('0.0')
 class Journal:
     __name__ = 'account.payment.journal'
 
-    bank_account = fields.Many2One('bank.account', 'Bank Account',
-        domain=['OR',
-            [('owners', '=', Eval('company'))],
-            [('owners', '=', Eval('party'))],
-            ],
-        depends=['party', 'company'],
-        help='It is the bank account of the company or the party.')
     payment_type = fields.Many2One('account.payment.type', 'Payment Type',
         required=True)
     party = fields.Many2One('party.party', 'Party',
