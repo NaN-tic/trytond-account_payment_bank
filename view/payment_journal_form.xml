@@ -8,6 +8,8 @@ copyright notices and license terms. -->
         <separator string="Sender data" colspan="4" id="presenter_data"/>
         <label name="party"/>
         <field name="party"/>
+        <label name="bank_account"/>
+        <field name="bank_account"/>
         <label name="payment_type"/>
         <field name="payment_type"/>
     </xpath>

@@ -26,6 +26,10 @@ msgctxt "field:account.payment.group,payment_type:"
 msgid "Payment Type"
 msgstr "Tipo de pago"
 
+msgctxt "field:account.payment.journal,bank_account:"
+msgid "Bank Account"
+msgstr "Cuenta bancaria"
+
 msgctxt "field:account.payment.journal,party:"
 msgid "Party"
 msgstr "Tercero"
@@ -33,6 +37,10 @@ msgstr "Tercero"
 msgctxt "field:account.payment.journal,payment_type:"
 msgid "Payment Type"
 msgstr "Tipo de pago"
+
+msgctxt "help:account.payment.journal,bank_account:"
+msgid "It is the bank account of the company or the party."
+msgstr "Es la cuenta bancaria de la empresa o del tercero."
 
 msgctxt "help:account.payment.journal,party:"
 msgid ""
