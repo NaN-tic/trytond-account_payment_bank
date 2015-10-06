@@ -15,6 +15,13 @@ _ZERO = Decimal('0.0')
 class Journal:
     __name__ = 'account.payment.journal'
 
+    bank_account = fields.Many2One('bank.account', 'Bank Account',
+        domain=['OR',
+            [('owners', '=', Eval('company'))],
+            [('owners', '=', Eval('party'))],
+            ],
+        depends=['party', 'company'],
+        help='It is the bank account of the company or the party.')
     payment_type = fields.Many2One('account.payment.type', 'Payment Type',
         required=True)
     party = fields.Many2One('party.party', 'Party',
