@@ -41,6 +41,10 @@ class Group:
                 Eval('currency_digits', 2)), depends=['currency_digits']),
         'get_amount')
 
+    @classmethod
+    def default_currency_digits(cls):
+        return 2
+
     @fields.depends('journal')
     def on_change_with_payment_type(self, name=None):
         if self.journal and self.journal.payment_type:
