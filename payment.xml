@@ -7,7 +7,7 @@ copyright notices and license terms. -->
         <!-- account.payment.journal -->
         <record model="ir.ui.view" id="payment_journal_view_form">
             <field name="model">account.payment.journal</field>
-            <field name="type">form</field>
+            <field name="type" eval="None"/>
             <field name="priority" eval="20"/>
             <field name="inherit" ref="account_payment.payment_journal_view_form"/>
             <field name="name">payment_journal_form</field>
@@ -15,7 +15,7 @@ copyright notices and license terms. -->
 
         <record model="ir.ui.view" id="payment_journal_view_list">
             <field name="model">account.payment.journal</field>
-            <field name="type">tree</field>
+            <field name="type" eval="None"/>
             <field name="priority" eval="20"/>
             <field name="inherit" ref="account_payment.payment_journal_view_list"/>
             <field name="name">payment_journal_list</field>
@@ -24,14 +24,14 @@ copyright notices and license terms. -->
         <!-- account.payment.group -->
         <record model="ir.ui.view" id="payment_group_view_form">
             <field name="model">account.payment.group</field>
-            <field name="type">form</field>
+            <field name="type" eval="None"/>
             <field name="priority" eval="20"/>
             <field name="inherit" ref="account_payment.payment_group_view_form"/>
             <field name="name">payment_group_form</field>
         </record>
         <record model="ir.ui.view" id="payment_group_view_list">
             <field name="model">account.payment.group</field>
-            <field name="type">tree</field>
+            <field name="type" eval="None"/>
             <field name="priority" eval="20"/>
             <field name="inherit" ref="account_payment.payment_group_view_list"/>
             <field name="name">payment_group_list</field>
@@ -40,13 +40,13 @@ copyright notices and license terms. -->
     <!-- account.payment -->
         <record model="ir.ui.view" id="payment_view_form">
             <field name="model">account.payment</field>
-            <field name="type">form</field>
+            <field name="type" eval="None"/>
             <field name="inherit" ref="account_payment.payment_view_form"/>
             <field name="name">payment_form</field>
         </record>
         <record model="ir.ui.view" id="payment_view_list">
             <field name="model">account.payment</field>
-            <field name="type">tree</field>
+            <field name="type" eval="None"/>
             <field name="priority" eval="20"/>
             <field name="inherit" ref="account_payment.payment_view_list"/>
             <field name="name">payment_list</field>
