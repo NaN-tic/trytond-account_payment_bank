@@ -5,7 +5,6 @@ copyright notices and license terms. -->
 <data>
     <xpath expr="/tree/field[@name=&quot;process_method&quot;]"
             position="after">
-        <field name="bank_account"/>
         <field name="payment_type"/>
     </xpath>
 </data>
