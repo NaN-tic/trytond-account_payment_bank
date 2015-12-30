@@ -3,7 +3,7 @@
 # the full copyright notices and license terms.
 from decimal import Decimal
 from trytond.model import fields
-from trytond.pool import Pool, PoolMeta
+from trytond.pool import PoolMeta
 from trytond.pyson import Eval
 
 __all__ = ['Journal', 'Group', 'Payment', 'PayLine']
@@ -109,6 +109,21 @@ class Payment:
             res['bank_account'] = (default_bank_account and
                 default_bank_account.id or None)
         return res
+
+    @classmethod
+    def get_sepa_mandates(cls, payments):
+        mandates = super(Payment, cls).get_sepa_mandates(payments)
+        mandates2 = []
+        for payment, mandate in zip(payments, mandates):
+            if payment.bank_account != mandate.bank_account:
+                mandate = None
+                for mandate2 in payment.party.sepa_mandates:
+                    if (mandate2.is_valid and
+                        mandate2.bank_account == payment.bank_account):
+                        mandate = mandate2
+                        break
+            mandates2.append(mandate)
+        return mandates2
 
 
 class PayLine:
