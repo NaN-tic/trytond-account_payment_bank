@@ -114,6 +114,21 @@ class Payment:
             self.bank_account = (default_bank_account and
                 default_bank_account.id or None)
 
+    @classmethod
+    def get_sepa_mandates(cls, payments):
+        mandates = super(Payment, cls).get_sepa_mandates(payments)
+        mandates2 = []
+        for payment, mandate in zip(payments, mandates):
+            if payment.bank_account != mandate.bank_account:
+                mandate = None
+                for mandate2 in payment.party.sepa_mandates:
+                    if (mandate2.is_valid and
+                        mandate2.bank_account == payment.bank_account):
+                        mandate = mandate2
+                        break
+            mandates2.append(mandate)
+        return mandates2
+
 
 class PayLine:
     __name__ = 'account.move.line.pay'
