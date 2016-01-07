@@ -115,11 +115,12 @@ class Payment:
         mandates = super(Payment, cls).get_sepa_mandates(payments)
         mandates2 = []
         for payment, mandate in zip(payments, mandates):
-            if payment.bank_account != mandate.bank_account:
+            if payment.bank_account != mandate.account_number.account:
                 mandate = None
                 for mandate2 in payment.party.sepa_mandates:
                     if (mandate2.is_valid and
-                        mandate2.bank_account == payment.bank_account):
+                        mandate2.account_number.account == payment.bank_account
+                        ):
                         mandate = mandate2
                         break
             mandates2.append(mandate)
