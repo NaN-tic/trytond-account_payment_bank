@@ -1,6 +1,14 @@
-# 
+#
 msgid ""
 msgstr "Content-Type: text/plain; charset=utf-8\n"
+
+msgctxt "error:account.payment:"
+msgid ""
+"No valid mandate for payment \"%(payment)s\" of party \"%(party)s\" with "
+"amount \"%(amount)s\"."
+msgstr ""
+"No se ha encontrado un mandato valido para el pago \"%(payment)s\" del "
+"tercero \"%(party)s\" con importe \"%(amount)s\"."
 
 msgctxt "field:account.payment,bank_account:"
 msgid "Bank Account"
