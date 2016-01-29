@@ -81,6 +81,11 @@ class Payment:
             cls.line.on_change.add('kind')
         if 'party' not in cls.line.on_change:
             cls.line.on_change.add('party')
+        cls._error_messages.update({
+                'no_mandate_for_party': ('No valid mandate for payment '
+                    '"%(payment)s" of party "%(party)s" with amount '
+                    '"%(amount)s".'),
+                })
 
     @fields.depends('party', 'kind')
     def on_change_kind(self):
@@ -119,6 +124,12 @@ class Payment:
         mandates = super(Payment, cls).get_sepa_mandates(payments)
         mandates2 = []
         for payment, mandate in zip(payments, mandates):
+            if not mandate:
+                cls.raise_user_error('no_mandate_for_party', {
+                        'payment': payment.rec_name,
+                        'party': payment.party.rec_name,
+                        'amount': payment.amount,
+                        })
             if payment.bank_account != mandate.account_number.account:
                 mandate = None
                 for mandate2 in payment.party.sepa_mandates:
