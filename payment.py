@@ -7,12 +7,12 @@ from trytond.pool import PoolMeta
 from trytond.pyson import Eval
 
 __all__ = ['Journal', 'Group', 'Payment', 'PayLine']
-__metaclass__ = PoolMeta
 
 _ZERO = Decimal('0.0')
 
 
 class Journal:
+    __metaclass__ = PoolMeta
     __name__ = 'account.payment.journal'
 
     payment_type = fields.Many2One('account.payment.type', 'Payment Type',
@@ -23,6 +23,7 @@ class Journal:
 
 
 class Group:
+    __metaclass__ = PoolMeta
     __name__ = 'account.payment.group'
 
     payment_type = fields.Function(fields.Many2One('account.payment.type',
@@ -60,6 +61,7 @@ class Group:
 
 
 class Payment:
+    __metaclass__ = PoolMeta
     __name__ = 'account.payment'
     bank_account = fields.Many2One('bank.account', 'Bank Account',
         states={
@@ -143,6 +145,7 @@ class Payment:
 
 
 class PayLine:
+    __metaclass__ = PoolMeta
     __name__ = 'account.move.line.pay'
 
     def get_payment(self, line):
