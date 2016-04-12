@@ -8,7 +8,6 @@ copyright notices and license terms. -->
     <!-- account.move.line -->
         <record model="ir.ui.view" id="move_line_view_list">
             <field name="model">account.move.line</field>
-            <field name="type" eval="None"/>
             <field name="priority" eval="20"/>
             <field name="inherit" ref="account_payment.move_line_view_list"/>
             <field name="name">move_line_list</field>
