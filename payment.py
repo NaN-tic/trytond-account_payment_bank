@@ -3,7 +3,7 @@
 # the full copyright notices and license terms.
 from decimal import Decimal
 from trytond.model import fields
-from trytond.pool import PoolMeta
+from trytond.pool import Pool, PoolMeta
 from trytond.pyson import Eval
 
 __all__ = ['Journal', 'Group', 'Payment', 'PayLine']
@@ -149,6 +149,9 @@ class PayLine:
     __name__ = 'account.move.line.pay'
 
     def get_payment(self, line):
+        pool = Pool()
+        Invoice = pool.get('account.invoice')
         payment = super(PayLine, self).get_payment(line)
-        payment.bank_account = line.bank_account
+        if isinstance(line.origin, Invoice):
+            payment.bank_account = line.origin.bank_account
         return payment
