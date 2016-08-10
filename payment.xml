@@ -57,6 +57,15 @@ copyright notices and license terms. -->
             <field name="act_window" ref="account_payment.act_move_line_form"/>
         </record>
         <record model="ir.action.act_window.domain"
+            id="act_move_line_form_domain_netting">
+            <field name="name">Netting</field>
+            <field name="sequence" eval="30"/>
+            <field name="domain"
+                eval="[('account.kind', 'in', ['payable','receivable']), ('netting_moves', '=', True)]"
+                pyson="1"/>
+            <field name="act_window" ref="account_payment.act_move_line_form"/>
+        </record>
+        <record model="ir.action.act_window.domain"
             id="act_move_line_form_domain_payable_with_reverse">
             <field name="name">Payable with reverse moves</field>
             <field name="sequence" eval="13"/>
