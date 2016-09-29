@@ -148,10 +148,10 @@ class PayLine:
     __metaclass__ = PoolMeta
     __name__ = 'account.move.line.pay'
 
-    def get_payment(self, line):
+    def get_payment(self, line, journals):
         pool = Pool()
         Invoice = pool.get('account.invoice')
-        payment = super(PayLine, self).get_payment(line)
+        payment = super(PayLine, self).get_payment(line, journals)
         if isinstance(line.origin, Invoice):
             payment.bank_account = line.origin.bank_account
         return payment
