@@ -139,12 +139,13 @@ class Payment:
                         'party': payment.party.rec_name,
                         'amount': payment.amount,
                         })
-            if payment.bank_account != mandate.account_number.account:
+            if (mandate and
+                    payment.bank_account != mandate.account_number.account):
                 mandate = None
                 for mandate2 in payment.party.sepa_mandates:
                     if (mandate2.is_valid and
                         mandate2.account_number.account == payment.bank_account
-                        ):
+                            ):
                         mandate = mandate2
                         break
             mandates2.append(mandate)
