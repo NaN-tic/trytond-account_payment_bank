@@ -139,8 +139,7 @@ class Payment:
                         'party': payment.party.rec_name,
                         'amount': payment.amount,
                         })
-            if (mandate and
-                    payment.bank_account != mandate.account_number.account):
+            if (payment.bank_account != mandate.account_number.account):
                 mandate = None
                 for mandate2 in payment.party.sepa_mandates:
                     if (mandate2.is_valid and
