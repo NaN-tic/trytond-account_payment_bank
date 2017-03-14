@@ -5,6 +5,8 @@ copyright notices and license terms. -->
 <data>
     <xpath expr="/form/field[@name=&quot;currency&quot;]"
             position="after">
+        <label name="payment_type"/>
+        <field name="payment_type"/>
         <label name="bank_account"/>
         <field name="bank_account"/>
     </xpath>
