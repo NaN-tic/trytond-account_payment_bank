@@ -121,8 +121,8 @@ class Payment(BankMixin):
         MoveLine = pool.get('account.move.line')
         TableHandler = backend.get('TableHandler')
 
-        cursor = Transaction().cursor
-        table = TableHandler(cursor, cls, module_name)
+        cursor = Transaction().connection.cursor()
+        table = TableHandler(cls, module_name)
         sql_table = cls.__table__()
         move_line_table = MoveLine.__table__()
 
