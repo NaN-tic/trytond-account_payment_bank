@@ -1,18 +1,26 @@
 # This file is part of account_payment_bank module for Tryton.
 # The COPYRIGHT file at the top level of this repository contains
 # the full copyright notices and license terms.
+from trytond import backend
 from decimal import Decimal
 from trytond.model import fields
-from trytond.pool import PoolMeta
+from trytond.pool import PoolMeta, Pool
 from trytond.pyson import Eval
+from trytond.transaction import Transaction
+from trytond.modules.account_bank.account import BankMixin
 
-__all__ = ['Journal', 'Group', 'Payment', 'PayLine']
-__metaclass__ = PoolMeta
+__all__ = [
+    'Journal',
+    'Group',
+    'Payment',
+    'PayLine'
+    ]
 
 _ZERO = Decimal('0.0')
 
 
 class Journal:
+    __metaclass__ = PoolMeta
     __name__ = 'account.payment.journal'
 
     payment_type = fields.Many2One('account.payment.type', 'Payment Type',
@@ -23,6 +31,7 @@ class Journal:
 
 
 class Group:
+    __metaclass__ = PoolMeta
     __name__ = 'account.payment.group'
 
     payment_type = fields.Function(fields.Many2One('account.payment.type',
@@ -55,16 +64,16 @@ class Group:
             return amount
 
 
-class Payment:
+class Payment(BankMixin):
+    __metaclass__ = PoolMeta
     __name__ = 'account.payment'
-    bank_account = fields.Many2One('bank.account', 'Bank Account',
+    _default_payment_type_from = 'party'
+
+    payment_type = fields.Many2One('account.payment.type', 'Payment Type',
         states={
             'readonly': Eval('state') != 'draft',
             },
-        domain=[
-            ('owners', '=', Eval('party'))
-            ],
-        depends=['party', 'kind'])
+        depends=['state'])
 
     @classmethod
     def __setup__(cls):
@@ -77,6 +86,41 @@ class Payment:
             cls.line.on_change.add('kind')
         if 'party' not in cls.line.on_change:
             cls.line.on_change.add('party')
+        if 'line' not in cls.account_bank_from.on_change_with:
+            cls.account_bank_from.on_change_with.add('line')
+
+        readonly = Eval('state') != 'draft'
+        previous_readonly = cls.bank_account.states.get('readonly')
+        if previous_readonly:
+            readonly = readonly | previous_readonly
+        cls.bank_account.states.update({
+                'readonly': readonly,
+                })
+        if not 'state' in cls.bank_account.depends:
+            cls.bank_account.depends.append('state')
+
+    @classmethod
+    def __register__(cls, module_name):
+        pool = Pool()
+        MoveLine = pool.get('account.move.line')
+        TableHandler = backend.get('TableHandler')
+
+        cursor = Transaction().cursor
+        table = TableHandler(cursor, cls, module_name)
+        sql_table = cls.__table__()
+        move_line_table = MoveLine.__table__()
+
+        exist_payment_type = table.column_exist('payment_type')
+
+        super(Payment, cls).__register__(module_name)
+
+        # Migration: copy payment_type from line
+        if not exist_payment_type:
+            cursor.execute(*sql_table.update(
+                    columns=[sql_table.payment_type],
+                    values=[move_line_table.payment_type],
+                    from_=[move_line_table],
+                    where=sql_table.line == move_line_table.id))
 
     def on_change_kind(self):
         res = super(Payment, self).on_change_kind()
@@ -128,9 +172,11 @@ class Payment:
 
 
 class PayLine:
+    __metaclass__ = PoolMeta
     __name__ = 'account.move.line.pay'
 
     def get_payment(self, line):
         payment = super(PayLine, self).get_payment(line)
         payment.bank_account = line.bank_account
+        payment.payment_type = line.payment_type
         return payment
