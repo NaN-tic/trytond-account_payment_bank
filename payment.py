@@ -131,7 +131,7 @@ class Payment(BankMixin):
         super(Payment, cls).__register__(module_name)
 
         # Migration: copy payment_type from line
-        if not exist_payment_type:
+        if not exist_payment_type and backend.name() != 'sqlite':
             cursor.execute(*sql_table.update(
                     columns=[sql_table.payment_type],
                     values=[move_line_table.payment_type],
