@@ -8,6 +8,7 @@ from trytond.pool import PoolMeta, Pool
 from trytond.pyson import Eval
 from trytond.transaction import Transaction
 from trytond.modules.account_bank.account import BankMixin
+from trytond import backend
 
 __all__ = [
     'Journal',
@@ -115,7 +116,7 @@ class Payment(BankMixin):
         super(Payment, cls).__register__(module_name)
 
         # Migration: copy payment_type from line
-        if not exist_payment_type:
+        if not exist_payment_type and backend.name() != 'sqlite':
             cursor.execute(*sql_table.update(
                     columns=[sql_table.payment_type],
                     values=[move_line_table.payment_type],
